@@ -1,0 +1,37 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/video
+    username: root
+    password: root
+server:
+  port: 8080
+  display-name: video
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  typeAliasesPackage: cc.leevi.model
+ffmped:
+  scanPath: F:\马克思
+  path: D:\ffmpeg\bin\ffmpeg.exe
+  convert: D:\ffmpeg\bin\ffmpeg.exe -loglevel quiet -i "%s" -codec:v libx264 -codec:a mp3 -map 0 -f ssegment -segment_format mpegts -segment_list "%s" -segment_time 10 "%s"
+  split: D:\ffmpeg\bin\ffmpeg.exe -i "$s" -c copy -map 0 -f segment -segment_list "%s" -segment_time 10 "%s"
+  info: D:\ffmpeg\bin\ffmpeg.exe -i "%s"
+  cover: D:\ffmpeg\bin\ffmpeg.exe -loglevel quiet -i "%s" -ss 20 -y -f image2 -t 0.001 -s 600x350 "%s"
+  support-formats:
+   - .mp4
+   - .rmvb
+   - .avi
+   - .mkv
+   - .mov
+   - .wmv
+   - .flv
+logging:
+  level: info
+qiniu:
+  accesskey: NQxbQJg4fu9WBdShdI6WbuqCvqBuwTOweviszPWb
+  secretkey: BnC3m_Jqyjx9GyGYeQ5LG3AUoExU2Q7yVhWFXyjv
+  bucket: spider
+  prefix: ok82k2xq6.bkt.clouddn.com
+global:
+  schema: http://
+  domain: 192.168.199.240
+  media: /media
